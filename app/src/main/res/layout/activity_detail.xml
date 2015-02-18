@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/activity_detail_iv_artwork"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        />
+
+    <com.test.musictrial.ui.view.ItemRowView
+        android:id="@+id/activity_detail_cv_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:background="#66ffffff">
+
+        <TextView
+            android:id="@+id/activity_detail_tv_previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="prev"
+            android:padding="10dp"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/activity_detail_tv_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="play"
+            android:padding="10dp"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/activity_detail_tv_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="next"
+            android:padding="10dp"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+</RelativeLayout>
