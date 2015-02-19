@@ -2,11 +2,13 @@ package com.test.musictrial.ui.activity;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -23,6 +25,7 @@ import com.test.musictrial.domain.repository.SearchRepository;
 import com.test.musictrial.ui.UIThread;
 import com.test.musictrial.ui.adapter.ItemAdapter;
 import com.test.musictrial.ui.presenter.MainPresenter;
+import com.test.musictrial.ui.service.PlayerService;
 
 import java.util.List;
 
@@ -36,6 +39,7 @@ public class MainActivity extends ActionBarActivity implements SearchView.OnQuer
     @InjectView (R.id.activity_main_rv) RecyclerView mItemsRv;
     private ItemAdapter mAdapter;
     private MainPresenter mPresenter;
+    private Intent playerIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +48,25 @@ public class MainActivity extends ActionBarActivity implements SearchView.OnQuer
 
         ButterKnife.inject(this);
 
+        playerIntent = new Intent(getApplicationContext(), PlayerService.class);
+
         initializeLoginUseCase();
         initViews();
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        startService(playerIntent);
+
+        Log.d("SERVICE", "RESUME");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(playerIntent);
     }
 
     @Override

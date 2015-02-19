@@ -43,6 +43,7 @@ public class PlayerService extends Service implements MediaPlayer.OnCompletionLi
     // OnCreate
     @Override
     public void onCreate() {
+        Log.d("SERVICE","CREATE");
         mediaPlayer.setOnCompletionListener(this);
         mediaPlayer.setOnErrorListener(this);
         mediaPlayer.setOnPreparedListener(this);
@@ -56,7 +57,7 @@ public class PlayerService extends Service implements MediaPlayer.OnCompletionLi
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
+        Log.d("SERVICE","START");
         telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         phoneStateListener = new PhoneStateListener() {
             @Override
@@ -86,7 +87,25 @@ public class PlayerService extends Service implements MediaPlayer.OnCompletionLi
         return START_STICKY;
     }
 
+    public void onEvent(List<ItunesItem> list) {
+        Log.d("SERVICE", "list");
+        if ( mItemList != null) {
+            mItemList.clear();
+        }
+        mItemList = list;
+    }
+
+    public void onEvent(Integer id) {
+        Log.d("SERVICE", "position");
+        for(int i = 0; i < mItemList.size(); i++) {
+            if(mItemList.get(i).getTrackId() == id) {
+                mListPosition = i;
+            }
+        }
+    }
+
     public void onEvent(ServiceStatus status) {
+        Log.d("SERVICE", "status");
         switch (status) {
             case PLAY:
                 if (!isMediaPlayerStarted) {
@@ -198,6 +217,7 @@ public class PlayerService extends Service implements MediaPlayer.OnCompletionLi
 
     @Override
     public IBinder onBind(Intent arg0) {
+        Log.d("SERVICE","BIND");
         return null;
     }
 
@@ -254,6 +274,7 @@ public class PlayerService extends Service implements MediaPlayer.OnCompletionLi
 
     public void nextSong() {
         mListPosition = (mListPosition + 1) % mItemList.size();
+        EventBus.getDefault().post(mItemList.get(mListPosition));
     }
 
     public void previousSong() {
@@ -263,5 +284,7 @@ public class PlayerService extends Service implements MediaPlayer.OnCompletionLi
         } else {
             mListPosition = temp;
         }
+
+        EventBus.getDefault().post(mItemList.get(mListPosition));
     }
 }

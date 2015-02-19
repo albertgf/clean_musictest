@@ -19,6 +19,7 @@ public class ItunesItemEntityDataMapper {
         ItunesItem item = null;
         if(apiItunesItem != null) {
             item = new ItunesItem();
+            item.setTrackId(item.getTrackId());
             item.setArtist(apiItunesItem.getArtistName());
             item.setCollection(apiItunesItem.getCollectionName());
             item.setTitle(apiItunesItem.getTrackName());
@@ -28,6 +29,7 @@ public class ItunesItemEntityDataMapper {
             item.setGenere(apiItunesItem.getPrimaryGenreName());
             item.setThumbnail(apiItunesItem.getArtworkUrl100());
             item.setDuration(apiItunesItem.getTrackTimeMillis());
+            item.setStreamUrl(apiItunesItem.getPreviewUrl());
         }
 
         return item;

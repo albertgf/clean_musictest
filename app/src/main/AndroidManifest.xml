@@ -3,6 +3,7 @@
     package="com.test.musictrial" >
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -20,6 +21,10 @@
         </activity>
 
         <activity android:name=".ui.activity.DetailActivity"/>
+
+        <service
+            android:name=".ui.service.PlayerService"
+            android:exported="false"/>
     </application>
 
 </manifest>

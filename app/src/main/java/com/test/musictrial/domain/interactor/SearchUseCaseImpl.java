@@ -8,6 +8,8 @@ import com.test.musictrial.domain.repository.SearchRepository;
 
 import java.util.List;
 
+import de.greenrobot.event.EventBus;
+
 /**
  * Created by albert on 17/02/15.
  */
@@ -55,6 +57,7 @@ public class SearchUseCaseImpl implements SearchUseCase {
     private void notifySearchSuccessfully(final List<ItunesItem> list) {
         this.postExecutionThread.post(new Runnable() {
             @Override public void run() {
+                EventBus.getDefault().post(list);
                 callback.onSearch(list);
             }
         });

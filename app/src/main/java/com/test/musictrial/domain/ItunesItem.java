@@ -4,6 +4,7 @@ package com.test.musictrial.domain;
  * Created by albert on 17/02/15.
  */
 public class ItunesItem {
+    private int trackId;
     private String title;
     private String artist;
     private String collection;
@@ -108,5 +109,13 @@ public class ItunesItem {
 
     public void setStreamUrl(String streamUrl) {
         this.streamUrl = streamUrl;
+    }
+
+    public int getTrackId() {
+        return trackId;
+    }
+
+    public void setTrackId(int trackId) {
+        this.trackId = trackId;
     }
 }
