@@ -13,6 +13,7 @@ public class ItunesItem {
     private String genere;
     private double price;
     private String currency;
+    private String streamUrl;
 
     public String getTitle() {
         return title;
@@ -99,5 +100,13 @@ public class ItunesItem {
         stringBuilder.append("*******************************");
 
         return stringBuilder.toString();
+    }
+
+    public String getStreamUrl() {
+        return streamUrl;
+    }
+
+    public void setStreamUrl(String streamUrl) {
+        this.streamUrl = streamUrl;
     }
 }

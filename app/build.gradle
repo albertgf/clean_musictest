@@ -36,6 +36,7 @@ dependencies {
     //ui layer
     compile 'com.jakewharton:butterknife:6.1.0'
     compile 'com.squareup.picasso:picasso:2.3.4'
+    compile 'de.greenrobot:eventbus:2.4.0'
 
     //data layer
     compile 'com.squareup.retrofit:retrofit:1.6.1'
